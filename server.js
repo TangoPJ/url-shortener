@@ -5,7 +5,7 @@ import dotenv from 'dotenv'
 import path from 'path'
 import mongoose from 'mongoose'
 import { nanoid } from 'nanoid'
-import urlExist from 'url-exist'
+// import urlExist from 'url-exist'
 import URL from './models/urlModels.js'
 
 const __dirname = path.resolve()
