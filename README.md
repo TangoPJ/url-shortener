@@ -1,8 +1,8 @@
-# URL Shortener - created just for practice
+## URL Shortener - created just for practice
 
 ### To run this project locally you need to register an account in the https://cloud.mongodb.com/ then add and save the MONGO_DB_URI variable to the .env file
 
-Еhe following technologies were used in the creation:
+#### Еhe following technologies were used in the creation:
 - Node.js/Express
 - Mongoose
 - MongoDB Cloud
