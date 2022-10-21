@@ -5,7 +5,7 @@ import dotenv from 'dotenv'
 import path from 'path'
 import mongoose from 'mongoose'
 import { nanoid } from 'nanoid'
-// import urlExist from 'url-exist'
+import urlExist from 'url-exist'
 import URL from './models/urlModels.js'
 
 const __dirname = path.resolve()
@@ -26,22 +26,22 @@ mongoose.connect(process.env.MONGO_DB_URI, (err) => {
   console.log("Database connected successfully")
 })
 
-// const validateURL = async (req, res, next) => {
-//   const { url } = req.body
-//   const isExist = await urlExist(url)
+const validateURL = async (req, res, next) => {
+  const { url } = req.body
+  const isExist = await urlExist(url)
 
-//   if (!isExist) {
-//     return res.json({ message: 'Invalid URL', type: 'failure' })
-//   }
+  if (!isExist) {
+    return res.send({ message: 'Invalid URL', type: 'failure' })
+  }
 
-//   next()
-// }
+  next()
+}
 
-app.get('/', (req, res) => {
+app.get('/', (_, res) => {
   res.sendFile(__dirname + '/public/index.html')
 })
 
-app.post('/link', (req, res) => {
+app.post('/link', validateURL, (req, res) => {
   const { url } = req.body
   const id = nanoid(8)
   const newURL = new URL({ url, id })
@@ -58,7 +58,6 @@ app.post('/link', (req, res) => {
 app.get('/:id', async (req, res) => {
   const id = req.params.id
   const originalLink = await URL.findOne({ id })
-  
   if (!originalLink) {
     res.sendFile(__dirname + '/public/404.html')
   }

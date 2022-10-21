@@ -32,7 +32,6 @@ a {
 }
 
 .container {
-  max-width: 400px;
   margin: auto;
   text-align: center;
   padding: 0 25px;
@@ -51,9 +50,8 @@ a {
 }
 
 .handlers {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  max-width: 300px;
+  margin: 0 auto;
 }
 
 .url-input {
